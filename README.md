@@ -4,13 +4,13 @@ Panduan Update
 
 NOTE: Mohon backup terlebih dahulu untuk source code dan website Argokusuma sebelum melakukan update ini
 
-* Update database
+# Update database
 Ada beberapa update database baik altering table, adding table maupun adding record, silahkan import file db/update.sql dump ke existing database Argokusuma
 
-* Update source code
+# Update source code
 Silahkan replace/tambahkan beberapa directory/file berikut ini untuk melakukan update
 
-- assets/js
+ assets/js
 - assets/css
 - assets/libs
 - assets/static/id.jpg (file)
@@ -23,7 +23,7 @@ Silahkan replace/tambahkan beberapa directory/file berikut ini untuk melakukan u
 - app/models
 - app/views
 
-* Pastikan configurasi sesuai
+# Pastikan configurasi sesuai
 Pastikan beberapa config berikut telah sesuai
 
 - Chmod untuk directory medias/* sudah writable
