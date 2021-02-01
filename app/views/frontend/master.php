@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-Frame-Options" content="deny">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title><?php echo isset($meta_title) ? $meta_title : ''; ?></title>
+  <meta name="description" content="<?php echo isset($meta_description) ? $meta_description : ''; ?>">
+  <meta name="keywords" content="<?php echo isset($meta_keywords) ? $meta_keywords : ''; ?>">
+  <link rel="icon" type="image/png" href="<?php echo site_url('assets/static/'.get_option('meta-favicon')); ?>" />
+
+  <link href="<?php echo base_url(); ?>assets/css/reset.css" rel="stylesheet" type="text/css" media="all">
+  <link href="<?php echo base_url(); ?>assets/libs/bootstrap-4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+  <link href="<?php echo base_url(); ?>assets/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+  <link href="<?php echo base_url(); ?>assets/libs/lightslider/css/lightslider.min.css" rel="stylesheet" type="text/css" media="all">
+  <link href="<?php echo base_url('assets/libs/slick/slick.css'); ?>" rel="stylesheet" type="text/css" media="all">
+  <link href="<?php echo base_url('assets/libs/slick/slick-theme.css'); ?>" rel="stylesheet" type="text/css" media="all">
+  <link rel="stylesheet" href="<?php echo base_url('assets/libs/sweetalert/sweetalert.css'); ?>">
+
+  <?php if(ENVIRONMENT == 'production'): ?>
+  <link href="<?php echo base_url(); ?>assets/css/fonts.min.css" rel="stylesheet" type="text/css" media="all">
+  <link href="<?php echo base_url(); ?>assets/css/style.min.css" rel="stylesheet" type="text/css" media="all">
+  <?php else: ?>
+  <link href="<?php echo base_url(); ?>assets/css/fonts.css" rel="stylesheet" type="text/css" media="all">
+  <link href="<?php echo base_url(); ?>assets/css/style.css?v=<?php echo date('U'); ?>" rel="stylesheet" type="text/css" media="all">
+  <?php endif; ?>
+
+  <?php echo $styles; ?>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- ANTI CLICKJACK -->
+  <style id="antiClickjack">body{display:none !important;}</style>
+  <script type="text/javascript">
+  if (self === top) { var antiClickjack = document.getElementById("antiClickjack");antiClickjack.parentNode.removeChild(antiClickjack);} else {top.location = self.location;}
+  </script>
+
+</head>
+<body>
+
+  <div id="wrapper">
+    <header>
+      <div class="wrapper common-1200">
+        <div class="brand-area">
+          <a href="<?php echo site_url($selected_lang); ?>">
+            <img src="<?php echo site_url('assets/static/'.get_option('main-logo')); ?>" alt="<?php echo get_option('meta-title'); ?>">
+          </a>
+        </div>
+        <div class="menu-area desktop-flex">
+          <ul class="menu">
+            <?php if(get_option('home-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang); ?>"><i class="fa fa-home"></i></a></li><?php endif; ?>
+            <?php if(get_option('about-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/about-us'); ?>"><?php echo get_option_lang('about-menu-text'); ?></a></li><?php endif; ?>
+            <?php if(get_option('service-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/what-we-do'); ?>"><?php echo get_option_lang('service-menu-text'); ?></a></li><?php endif; ?>
+            <?php if(get_option('portfolio-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/portfolio'); ?>"><?php echo get_option_lang('portfolio-menu-text'); ?></a></li><?php endif; ?>
+            <?php if(get_option('pricing-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/pricing'); ?>"><?php echo get_option_lang('pricing-menu-text'); ?></a></li><?php endif; ?>
+            <?php if(get_option('information-menu-visibility')): ?>
+              <li class="tree-menu">
+                <a class="text-shadow" href="#>"><?php echo get_option_lang('information-menu-text'); ?>&nbsp;<i class="fa fa-chevron-down"></i></a>
+                <ul class="child-menu">
+                  <?php if(get_option('blog-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/blog'); ?>"><?php echo get_option_lang('blog-menu-text'); ?></a></li><?php endif; ?>
+                  <?php if(get_option('consultation-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/consultation'); ?>"><?php echo get_option_lang('consultation-menu-text'); ?></a></li><?php endif; ?>
+                  <?php if(get_option('job-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/job-vacancy'); ?>"><?php echo get_option_lang('job-menu-text'); ?></a></li><?php endif; ?>
+                  <?php if(get_option('suggestion-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/suggestions'); ?>"><?php echo get_option_lang('suggestion-menu-text'); ?></a></li><?php endif; ?>
+                </ul>
+              </li>
+            <?php endif; ?>
+            <?php if(get_option('contact-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/contact-us'); ?>"><?php echo get_option_lang('contact-menu-text'); ?></a></li><?php endif; ?>
+            <li class="tree-menu lang-toggle">
+              <a class="text-shadow">
+                <div class="box-lang">
+                  <img src="<?php echo site_url('assets/static/'.$languages[$selected_lang]['flag_image']); ?>" class="flag">&nbsp;<i class="fa fa-chevron-down"></i>
+                </div>
+              </a>
+              <ul class="child-menu">
+                <?php foreach ($languages as $key => $value) { ?>
+                <li><a class="text-shadow" href="<?php echo $lang_url[$key]; ?>"><?php echo $value['label']; ?>&nbsp;<img src="<?php echo site_url('assets/static/'.$languages[$key]['flag_image']); ?>" class="flag"></a></li>
+                <?php } ?>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <button class="show-sidebar mobile"><i class="fa fa-bars"></i></button>
+      </div>
+    </header>
+    <div class="bgblack" id="bgblack"></div>
+    <div class="sidebar-menu">
+      <button class="button-hide hide-sidebar"><i class="fa fa-chevron-right"></i></button>
+      <ul class="menu">
+        <?php if(get_option('home-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang); ?>"><?php echo get_option_lang('home-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('about-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/about-us'); ?>"><?php echo get_option_lang('about-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('service-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/what-we-do'); ?>"><?php echo get_option_lang('service-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('portfolio-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/portfolio'); ?>"><?php echo get_option_lang('portfolio-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('pricing-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/pricing'); ?>"><?php echo get_option_lang('pricing-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('blog-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/blog'); ?>"><?php echo get_option_lang('blog-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('consultation-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/consultation'); ?>"><?php echo get_option_lang('consultation-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('job-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/job-vacancy'); ?>"><?php echo get_option_lang('job-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('suggestion-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/suggestions'); ?>"><?php echo get_option_lang('suggestion-menu-text'); ?></a></li><?php endif; ?>
+        <?php if(get_option('contact-menu-visibility')): ?><li><a class="text-shadow" href="<?php echo site_url($selected_lang.'/contact-us'); ?>"><?php echo get_option_lang('contact-menu-text'); ?></a></li><?php endif; ?>
+        <?php foreach ($languages as $key => $value) { if($selected_lang == $key) continue; ?>
+          <li class="language"><a class="text-shadow" href="<?php echo $lang_url[$key]; ?>"><?php echo $value['label']; ?>&nbsp;<img src="<?php echo site_url('assets/static/'.$languages[$key]['flag_image']); ?>" class="flag"></a></li>
+        <?php } ?>
+      </ul>
+    </div>
+    <section id="body">
+      <div class="body-container">
+         <?php echo $content; ?>
+      </div>
+    </section>
+    <footer>
+      <div class="wrapper common-1200">
+        <div class="section">
+          <h2><?php echo get_option_lang('contact-section-heading'); ?></h2>
+          <ul class="link-lists">
+            <li><a href="mailto:<?php echo get_option('email-address'); ?>"><?php echo get_option_lang('email-address'); ?></a></li>
+            <li><a href="tel:<?php echo get_option('phone-number'); ?>"><?php echo get_option_lang('phone-number'); ?></a></li>
+            <li><a href="#"><?php echo get_option_lang('office-address'); ?></a></li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2><?php echo get_option_lang('quicklink-section-heading'); ?></h2>
+          <ul class="link-lists">
+            <?php if(get_option('service-menu-visibility')): ?><li><a href="<?php echo site_url($selected_lang.'/what-we-do'); ?>"><?php echo get_option_lang('service-menu-text'); ?></a></li><?php endif; ?>
+            <?php if(get_option('portfolio-menu-visibility')): ?><li><a href="<?php echo site_url($selected_lang.'/portfolio'); ?>"><?php echo get_option_lang('portfolio-menu-text'); ?></a></li><?php endif; ?>
+            <?php if(get_option('blog-menu-visibility')): ?><li><a href="<?php echo site_url($selected_lang.'/blog'); ?>"><?php echo get_option_lang('blog-menu-text'); ?></a></li><?php endif; ?>
+          </ul>
+        </div>
+        <div class="section">
+          <h2><?php echo get_option_lang('latest-section-heading'); ?></h2>
+          <ul class="link-lists">
+            <?php foreach ($latestnews['lists'] as $key => $value) { ?>
+            <li><a href="<?php echo $value['url']; ?>"><?php echo $value['title']; ?><br><span><?php echo $value['date_formatted']; ?></span></a></li>
+            <?php } ?>
+          </ul>
+        </div>
+        <div class="section">
+          <h2><?php echo get_option('contact-section-heading'); ?></h2>
+          <ul class="link-lists socmed">
+            <li><a href="<?php echo get_option('instagram-url'); ?>" target="_blank"><button class="socmed"><i class="fa fa-instagram"></i></button></a></li>
+            <li><a href="<?php echo get_option('youtube-url'); ?>" target="_blank"><button class="socmed"><i class="fa fa-youtube"></i></button></a></li>
+            <li><a href="<?php echo get_option('twitter-url'); ?>" target="_blank"><button class="socmed"><i class="fa fa-twitter"></i></button></a></li>
+          </ul>
+        </div>
+
+        <div class="section-full">
+          <span><?php echo get_option_lang('copyright-text'); ?></span>
+        </div>
+      </div>
+    </footer>
+      
+  </div>  
+
+  <div id="fb-root"></div>
+
+  <script src="<?php echo base_url(); ?>assets/libs/jquery-1.11.0.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/libs/bootstrap-4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/libs/lightslider/js/lightslider.min.js"></script>
+  <script src="<?php echo base_url('assets/libs/slick/slick.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/libs/sweetalert/sweetalert.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/libs/mustache.min.js'); ?>"></script>
+
+  <?php if(ENVIRONMENT == 'production'): ?>
+  <script src="<?php echo base_url(); ?>assets/js/scripts.min.js"></script>
+  <?php else: ?>
+  <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
+  <?php endif; ?>
+  <script>
+  var baseurl = '<?php echo base_url(); ?>';
+  </script>
+    
+  <?php echo $scripts; ?>
+
+  <?php echo isset($google_analytic) ? $google_analytic : ''; ?> 
+  
+</body>
+</html>
