@@ -10,7 +10,7 @@ Ada beberapa update database baik altering table, adding table maupun adding rec
 # Update source code
 Silahkan replace/tambahkan beberapa directory/file berikut ini untuk melakukan update
 
- assets/js
+- assets/js
 - assets/css
 - assets/libs
 - assets/static/id.jpg (file)
